@@ -201,8 +201,7 @@ Potential improvements to the project include:
 # Author
 
 Matthew Nichols  
-Cybersecurity Student  
-Teesside University
+Cybersecurity Student 
 
 ---
 
