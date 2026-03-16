@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="reveal">
+  <div class="glass-card">
+    <h1>Access Temporarily Locked</h1>
+    <p class="muted">
+      Too many failed attempts were detected. Please wait 10 minutes and try again.
+    </p>
+
+    <div style="margin-top:16px;">
+      <a class="btn btn-ghost" href="{{ url_for('home') }}">Return Home</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

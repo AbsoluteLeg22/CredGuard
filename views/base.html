@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CredGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav class="navbar">
+  <a class="brand" href="/">
+    <span class="logo-icon">🛡</span>
+    <span class="logo-text">CredGuard</span>
+    <span class="tagline">"Fortify your first line of defence."</span>
+  </a>
+
+  <div class="navlinks">
+    <a href="/">Home</a>
+    <a href="/strength-guide">Strength Guide</a>
+    <a href="/security-tips">Security Tips</a>
+    <a href="/password-threats">Password Threats</a>
+    <a href="/about">About</a>
+    <button id="themeToggle" class="icon-btn" type="button">☀️</button>
+  </div>
+</nav>
+
+<main class="page">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>CredGuard</h3>
+      <p class="muted">
+        CredGuard is an educational password analysis tool demonstrating entropy scoring,
+        weak password detection and common password attack techniques.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/strength-guide">Strength Guide</a></li>
+        <li><a href="/security-tips">Security Tips</a></li>
+        <li><a href="/password-threats">Password Threats</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="/accessibility">Accessibility</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Security Concepts</h4>
+      <ul>
+        <li>Password entropy</li>
+        <li>Dictionary attacks</li>
+        <li>Rainbow tables</li>
+        <li>Brute force attacks</li>
+        <li>Credential breaches</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Project</h4>
+      <ul>
+        <li>University cybersecurity project</li>
+        <li>Password analytics demonstration</li>
+        <li>Built with Flask & JavaScript</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 CredGuard • Educational Security Demonstration</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

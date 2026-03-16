@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero reveal">
+  <div>
+    <h1>Build stronger passwords with confidence.</h1>
+    <p>
+      CredGuard provides a clear 1–5 star rating, estimated crack time,
+      and simple improvements so anyone can understand password strength.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn" href="/strength-guide">Open Strength Guide</a>
+      <a class="btn btn-ghost" href="/security-tips">Security Tips</a>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <div class="glass-title">Quick check (preview)</div>
+
+    <div class="field">
+      <div class="input-row">
+        <input id="homePasswordInput" type="password" placeholder="Try a password…">
+        <button id="homeTogglePw" class="icon-btn" type="button">👁️</button>
+      </div>
+    </div>
+
+    <div class="meter">
+      <div class="meter-top">
+        <span id="homeScoreLabel" class="score">—</span>
+        <span id="homeSuccessCheck" class="success-check">✓</span>
+      </div>
+
+      <div class="bar">
+        <div id="homeStrengthBar" class="bar-fill"></div>
+      </div>
+
+      <div class="meter-bottom">
+        <div id="homeStars">☆☆☆☆☆</div>
+        <div>Crack time: <b id="homeCrackTime">—</b></div>
+      </div>
+    </div>
+
+    <ul id="homeSuggestions" class="suggestions">
+      <li class="muted">Enter a password to begin analysis.</li>
+    </ul>
+
+    <div id="homeChips" class="chips"></div>
+
+    <p id="previewNote" class="preview-note">
+      🔒 Preview only — results are not stored or logged.
+    </p>
+  </div>
+</section>
+
+<section class="reveal" style="margin-top:20px;">
+  <div class="glass-card">
+    <h2>Security Disclaimer</h2>
+    <p class="muted">
+      CredGuard is an educational demonstration tool. Results are illustrative and should support,
+      not replace, real-world security best practices.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="glass-card reveal">
+  <h1>Privacy Policy</h1>
+  <p class="muted">
+    This page explains how CredGuard handles information within this educational demonstration project.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Overview</h2>
+  <p>
+    CredGuard is an educational password analysis tool created for demonstration purposes.
+    It is designed to help users understand password strength, weak password patterns and common attack methods.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Password Analysis Data</h2>
+  <p>
+    CredGuard does not aim to permanently store user passwords in plain text. Password analysis is performed
+    to generate strength ratings, crack-time estimates and security suggestions.
+  </p>
+
+  <p>
+    For dashboard analytics, limited anonymised metrics such as entropy score, rating and timestamp may be stored.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Admin Access</h2>
+  <p>
+    Access to administrative analytics is protected through an access key, login credentials and temporary lockout
+    controls after repeated failed attempts.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Cookies and Sessions</h2>
+  <p>
+    CredGuard uses session-based functionality to manage administrator access and temporary login state.
+    These sessions help protect restricted areas of the application.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Educational Use</h2>
+  <p>
+    CredGuard is intended as a university cybersecurity project and educational prototype.
+    It should not be treated as a production-grade password management or authentication platform.
+  </p>
+</div>
+
+<br>
+
+<div class="glass-card reveal">
+  <h2>Future Enhancements</h2>
+  <p>
+    In a full production system, additional safeguards would typically include a formal cookie notice,
+    stronger audit logging, clearer retention controls and more detailed compliance documentation.
+  </p>
+</div>
+
+{% endblock %}

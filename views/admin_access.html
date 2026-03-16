@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="reveal">
+  <div class="two-col">
+
+    <div class="glass-card">
+      <h1>Restricted Admin Area</h1>
+      <p class="muted">
+        This area is protected. Enter the secret access key to continue.
+      </p>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-wrap">
+            {% for msg in messages %}
+              <div class="flash">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="POST" class="form" action="{{ url_for('admin_login') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="field">
+          <label for="access_key">Secret Access Key</label>
+          <div class="input-row">
+            <input
+              id="access_key"
+              name="access_key"
+              type="password"
+              placeholder="Enter secret key..."
+              autocomplete="off"
+              required
+            >
+            <button id="toggleAccessKey" class="icon-btn" type="button">👁️</button>
+          </div>
+          <div class="hint">
+            Access is locked after multiple failed attempts.
+          </div>
+        </div>
+
+        <button class="btn" type="submit">Unlock</button>
+
+        <div class="note">
+          <b>Note:</b> This is the first security layer before admin credentials.
+        </div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Why This Is Protected</h2>
+      <p class="muted">
+        CredGuard’s dashboard contains anonymised password strength metrics and analytics. It is secured using:
+      </p>
+
+      <div class="sg-checklist">
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>Hidden access trigger</span>
+          <span class="chk-meta">Typed phrase</span>
+        </div>
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>Environment key validation</span>
+          <span class="chk-meta">Server-side</span>
+        </div>
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>Lockout protection</span>
+          <span class="chk-meta">5 attempts</span>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:14px;">
+        If the correct key is entered, you will proceed to the admin login page.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const btn = document.getElementById("toggleAccessKey");
+  const input = document.getElementById("access_key");
+  if (!btn || !input) return;
+
+  btn.addEventListener("click", () => {
+    input.type = input.type === "password" ? "text" : "password";
+    btn.textContent = input.type === "password" ? "👁️" : "🙈";
+  });
+})();
+</script>
+
+{% endblock %}

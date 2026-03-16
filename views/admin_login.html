@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="reveal">
+  <div class="two-col">
+    <div class="glass-card">
+      <h1>Admin Login</h1>
+      <p class="muted">
+        Restricted area. Enter admin credentials to access the dashboard.
+      </p>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-wrap">
+            {% for msg in messages %}
+              <div class="flash">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form class="form" method="POST" action="{{ url_for('admin_login') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" placeholder="admin" autocomplete="username" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-row">
+            <input id="password" name="password" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+            <button id="toggleAdminPw" class="icon-btn" type="button" aria-label="Toggle password visibility">👁️</button>
+          </div>
+          <div class="hint">You will be locked out after multiple failed attempts.</div>
+        </div>
+
+        <button class="btn" type="submit">Login</button>
+
+        <div class="note">
+          <b>Tip:</b> If you have not passed the access-key gate yet, go back and enter the secret access key first.
+        </div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Security Notice</h2>
+      <p class="muted">
+        This dashboard is for project demonstration and evaluation. Access is protected
+        by an access-key gate and admin credentials. Failed logins trigger a temporary lockout.
+      </p>
+
+      <div class="sg-checklist">
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>Two-step protection</span>
+          <span class="chk-meta">Gate 1 + Gate 2</span>
+        </div>
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>CSRF protected</span>
+          <span class="chk-meta">Flask-WTF</span>
+        </div>
+        <div class="sg-check-item ok">
+          <span><span class="chk-icon">✔</span>Attempt lockout</span>
+          <span class="chk-meta">10 min</span>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:14px;">
+        If you are locked out, wait until the timer expires then try again.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const btn = document.getElementById("toggleAdminPw");
+  const pw = document.getElementById("password");
+  if (!btn || !pw) return;
+
+  btn.addEventListener("click", () => {
+    pw.type = pw.type === "password" ? "text" : "password";
+    btn.textContent = pw.type === "password" ? "👁️" : "🙈";
+  });
+})();
+</script>
+
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="two-col reveal">
+  <div class="glass-card" id="sgCard">
+    <h1>Password Strength Guide</h1>
+    <p class="muted">
+      Type a password to get a simple star score (1–5), an estimated crack time, and clear improvements.
+      Use the interactive buttons below for instant upgrades while you learn.
+    </p>
+
+    <div class="field">
+      <label for="passwordInput">Password</label>
+      <div class="input-row">
+        <input id="passwordInput" type="password" placeholder="Type here…" autocomplete="off">
+        <button class="icon-btn" type="button" id="togglePw" aria-label="Toggle visibility">👁️</button>
+      </div>
+      <div class="hint">Aim for 12–16+ characters and mix character types.</div>
+    </div>
+
+    <div class="sg-actions">
+      <div class="sg-actions-title">Improve my password</div>
+      <div class="sg-actions-row">
+        <button class="sg-action-btn" type="button" data-action="length">+ Length</button>
+        <button class="sg-action-btn" type="button" data-action="uppercase">+ Uppercase</button>
+        <button class="sg-action-btn" type="button" data-action="numbers">+ Numbers</button>
+        <button class="sg-action-btn" type="button" data-action="symbols">+ Symbols</button>
+        <button class="sg-action-btn" type="button" data-action="shuffle">Mix it up</button>
+      </div>
+      <div class="muted sg-actions-note">
+        These edits happen locally in your browser so you can experiment safely.
+      </div>
+    </div>
+
+    <div class="meter">
+      <div class="meter-top">
+        <div class="label">Strength</div>
+        <div class="score-wrap">
+          <span id="scoreLabel" class="score">—</span>
+          <span id="successCheck" class="success-check">✓</span>
+        </div>
+      </div>
+
+      <div class="bar">
+        <div id="strengthBar" class="bar-fill"></div>
+      </div>
+
+      <div class="meter-bottom">
+        <div class="stars" id="stars">☆☆☆☆☆</div>
+        <div class="crack">Estimated crack time: <b id="crackTime">—</b></div>
+      </div>
+    </div>
+
+    <div class="sg-checklist">
+      <div class="sg-actions-title">Live checklist</div>
+
+      <div class="sg-check-item" id="chkLength">
+        <span class="chk-icon">○</span>
+        <span>12+ characters</span>
+        <span class="chk-meta" id="chkLengthMeta">0</span>
+      </div>
+
+      <div class="sg-check-item" id="chkUpper">
+        <span class="chk-icon">○</span>
+        <span>Uppercase (A–Z)</span>
+      </div>
+
+      <div class="sg-check-item" id="chkLower">
+        <span class="chk-icon">○</span>
+        <span>Lowercase (a–z)</span>
+      </div>
+
+      <div class="sg-check-item" id="chkNum">
+        <span class="chk-icon">○</span>
+        <span>Numbers (0–9)</span>
+      </div>
+
+      <div class="sg-check-item" id="chkSym">
+        <span class="chk-icon">○</span>
+        <span>Symbols (!@#…)</span>
+      </div>
+
+      <div class="sg-mini-tip muted" id="whyBox">
+        Start typing to see why your score changes.
+      </div>
+    </div>
+
+    <div class="suggest-wrap">
+      <div class="suggest-title">Suggestions</div>
+      <ul id="suggestions" class="suggestions">
+        <li class="muted">Enter a password to begin analysis.</li>
+      </ul>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+
+  <div class="stack reveal">
+    <div class="panel">
+      <h2>What the score means</h2>
+      <p class="muted">
+        CredGuard uses entropy-style logic internally, but shows a simple
+        star rating so the result is easy to understand.
+      </p>
+
+      <div class="score-legend">
+        <div><span class="dot d1"></span> 1 Very weak</div>
+        <div><span class="dot d2"></span> 2 Weak</div>
+        <div><span class="dot d3"></span> 3 Moderate</div>
+        <div><span class="dot d4"></span> 4 Strong</div>
+        <div><span class="dot d5"></span> 5 Very strong</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Common mistakes</h2>
+      <ul class="ticklist">
+        <li>Password reuse across sites</li>
+        <li>Predictable patterns</li>
+        <li>Short passwords</li>
+        <li>Replacing letters predictably</li>
+        <li>Storing passwords in plain text</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Interactive guide</h2>
+
+      <div class="accordion">
+        <button class="acc-btn" type="button" aria-expanded="false">
+          Why do longer passwords matter most?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel">
+          <p class="muted">
+            Length increases combinations dramatically. Even adding a few extra characters can multiply the number of
+            possible guesses by a huge amount, making brute-force attacks far harder.
+          </p>
+        </div>
+
+        <button class="acc-btn" type="button" aria-expanded="false">
+          What is credential stuffing?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel">
+          <p class="muted">
+            When attackers use leaked username/password pairs from one breach and try them on other sites.
+            This is why reuse is so dangerous.
+          </p>
+        </div>
+
+        <button class="acc-btn" type="button" aria-expanded="false">
+          Why does MFA help even with strong passwords?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel">
+          <p class="muted">
+            Strong passwords can still be stolen via phishing or malware. MFA adds a second check,
+            reducing account takeover risk even if the password is exposed.
+          </p>
+        </div>
+
+        <button class="acc-btn" type="button" aria-expanded="false">
+          What does estimated crack time actually mean?
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel">
+          <p class="muted">
+            It is a rough indicator based on a reference guessing rate. Real-world crack time varies depending on hashing,
+            rate limits, attacker hardware, and whether the password appears in leaked lists.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
